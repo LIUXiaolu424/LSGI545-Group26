@@ -1,0 +1,106 @@
+<experiments>
+  <experiment name="smoke_test_18x2" repetitions="2" runMetricsEveryStep="false">
+    <setup>setup</setup><go>go</go><timeLimit steps="120"/>
+    <metric>cumulative-infections</metric><metric>final-attack-rate</metric>
+    <metric>peak-infectious</metric><metric>time-to-peak</metric>
+    <metric>outbreak-duration</metric><metric>direct-infections</metric>
+    <metric>environmental-infections</metric><metric>isolation-person-days</metric>
+    <metric>mean-contamination</metric><metric>population-conserved?</metric>
+    <enumeratedValueSet variable="population"><value value="200"/></enumeratedValueSet>
+    <enumeratedValueSet variable="initial-infected"><value value="2"/></enumeratedValueSet>
+    <enumeratedValueSet variable="direct-transmission"><value value="0.05"/></enumeratedValueSet>
+    <enumeratedValueSet variable="environmental-transmission"><value value="0.03"/></enumeratedValueSet>
+    <enumeratedValueSet variable="asymptomatic-proportion"><value value="0.22"/></enumeratedValueSet>
+    <enumeratedValueSet variable="isolation-enabled?"><value value="true"/></enumeratedValueSet>
+    <enumeratedValueSet variable="environmental-transmission?"><value value="true"/></enumeratedValueSet>
+    <enumeratedValueSet variable="isolation-compliance"><value value="0"/><value value="0.5"/><value value="1"/></enumeratedValueSet>
+    <enumeratedValueSet variable="cleaning-frequency"><value value="0"/><value value="1"/><value value="2"/></enumeratedValueSet>
+    <enumeratedValueSet variable="post-symptom-exclusion"><value value="0"/><value value="2"/></enumeratedValueSet>
+  </experiment>
+
+  <experiment name="main_interventions_18x50" repetitions="50" runMetricsEveryStep="false">
+    <setup>setup</setup><go>go</go><timeLimit steps="120"/>
+    <metric>cumulative-infections</metric><metric>final-attack-rate</metric>
+    <metric>peak-infectious</metric><metric>time-to-peak</metric>
+    <metric>outbreak-duration</metric><metric>direct-infections</metric>
+    <metric>environmental-infections</metric><metric>isolation-person-days</metric>
+    <metric>mean-contamination</metric><metric>population-conserved?</metric>
+    <enumeratedValueSet variable="population"><value value="200"/></enumeratedValueSet>
+    <enumeratedValueSet variable="initial-infected"><value value="2"/></enumeratedValueSet>
+    <enumeratedValueSet variable="direct-transmission"><value value="0.05"/></enumeratedValueSet>
+    <enumeratedValueSet variable="environmental-transmission"><value value="0.03"/></enumeratedValueSet>
+    <enumeratedValueSet variable="asymptomatic-proportion"><value value="0.22"/></enumeratedValueSet>
+    <enumeratedValueSet variable="isolation-enabled?"><value value="true"/></enumeratedValueSet>
+    <enumeratedValueSet variable="environmental-transmission?"><value value="true"/></enumeratedValueSet>
+    <enumeratedValueSet variable="isolation-compliance"><value value="0"/><value value="0.5"/><value value="1"/></enumeratedValueSet>
+    <enumeratedValueSet variable="cleaning-frequency"><value value="0"/><value value="1"/><value value="2"/></enumeratedValueSet>
+    <enumeratedValueSet variable="post-symptom-exclusion"><value value="0"/><value value="2"/></enumeratedValueSet>
+  </experiment>
+
+  <experiment name="baseline_timeseries_50" repetitions="50" runMetricsEveryStep="true">
+    <setup>setup</setup><go>go</go><timeLimit steps="120"/>
+    <metric>count students with [disease-state = "S"]</metric>
+    <metric>count students with [disease-state = "E"]</metric>
+    <metric>count students with [disease-state = "I-sym"]</metric>
+    <metric>count students with [disease-state = "I-asym"]</metric>
+    <metric>count students with [disease-state = "P"]</metric>
+    <metric>count students with [disease-state = "R"]</metric>
+    <metric>new-infections-this-tick</metric><metric>mean-contamination</metric>
+    <enumeratedValueSet variable="population"><value value="200"/></enumeratedValueSet>
+    <enumeratedValueSet variable="initial-infected"><value value="2"/></enumeratedValueSet>
+    <enumeratedValueSet variable="direct-transmission"><value value="0.05"/></enumeratedValueSet>
+    <enumeratedValueSet variable="environmental-transmission"><value value="0.03"/></enumeratedValueSet>
+    <enumeratedValueSet variable="asymptomatic-proportion"><value value="0.22"/></enumeratedValueSet>
+    <enumeratedValueSet variable="isolation-enabled?"><value value="true"/></enumeratedValueSet>
+    <enumeratedValueSet variable="environmental-transmission?"><value value="true"/></enumeratedValueSet>
+    <enumeratedValueSet variable="isolation-compliance"><value value="0"/></enumeratedValueSet>
+    <enumeratedValueSet variable="cleaning-frequency"><value value="0"/></enumeratedValueSet>
+    <enumeratedValueSet variable="post-symptom-exclusion"><value value="0"/></enumeratedValueSet>
+  </experiment>
+
+  <experiment name="validation_zero_initial" repetitions="5" runMetricsEveryStep="false">
+    <setup>setup</setup><go>go</go><timeLimit steps="120"/>
+    <metric>cumulative-infections</metric><metric>population-conserved?</metric>
+    <enumeratedValueSet variable="population"><value value="200"/></enumeratedValueSet>
+    <enumeratedValueSet variable="initial-infected"><value value="0"/></enumeratedValueSet>
+    <enumeratedValueSet variable="direct-transmission"><value value="0.05"/></enumeratedValueSet>
+    <enumeratedValueSet variable="environmental-transmission"><value value="0.03"/></enumeratedValueSet>
+    <enumeratedValueSet variable="asymptomatic-proportion"><value value="0.22"/></enumeratedValueSet>
+    <enumeratedValueSet variable="isolation-enabled?"><value value="true"/></enumeratedValueSet>
+    <enumeratedValueSet variable="environmental-transmission?"><value value="true"/></enumeratedValueSet>
+    <enumeratedValueSet variable="isolation-compliance"><value value="0.5"/></enumeratedValueSet>
+    <enumeratedValueSet variable="cleaning-frequency"><value value="1"/></enumeratedValueSet>
+    <enumeratedValueSet variable="post-symptom-exclusion"><value value="2"/></enumeratedValueSet>
+  </experiment>
+
+  <experiment name="validation_zero_transmission" repetitions="10" runMetricsEveryStep="false">
+    <setup>setup</setup><go>go</go><timeLimit steps="120"/>
+    <metric>cumulative-infections</metric><metric>direct-infections</metric>
+    <metric>environmental-infections</metric><metric>population-conserved?</metric>
+    <enumeratedValueSet variable="population"><value value="200"/></enumeratedValueSet>
+    <enumeratedValueSet variable="initial-infected"><value value="2"/></enumeratedValueSet>
+    <enumeratedValueSet variable="direct-transmission"><value value="0"/></enumeratedValueSet>
+    <enumeratedValueSet variable="environmental-transmission"><value value="0"/></enumeratedValueSet>
+    <enumeratedValueSet variable="asymptomatic-proportion"><value value="0.22"/></enumeratedValueSet>
+    <enumeratedValueSet variable="isolation-enabled?"><value value="true"/></enumeratedValueSet>
+    <enumeratedValueSet variable="environmental-transmission?"><value value="true"/></enumeratedValueSet>
+    <enumeratedValueSet variable="isolation-compliance"><value value="0.5"/></enumeratedValueSet>
+    <enumeratedValueSet variable="cleaning-frequency"><value value="1"/></enumeratedValueSet>
+    <enumeratedValueSet variable="post-symptom-exclusion"><value value="2"/></enumeratedValueSet>
+  </experiment>
+
+  <experiment name="validation_environment_off" repetitions="10" runMetricsEveryStep="false">
+    <setup>setup</setup><go>go</go><timeLimit steps="120"/>
+    <metric>environmental-infections</metric><metric>population-conserved?</metric>
+    <enumeratedValueSet variable="population"><value value="200"/></enumeratedValueSet>
+    <enumeratedValueSet variable="initial-infected"><value value="2"/></enumeratedValueSet>
+    <enumeratedValueSet variable="direct-transmission"><value value="0.05"/></enumeratedValueSet>
+    <enumeratedValueSet variable="environmental-transmission"><value value="0.03"/></enumeratedValueSet>
+    <enumeratedValueSet variable="asymptomatic-proportion"><value value="0.22"/></enumeratedValueSet>
+    <enumeratedValueSet variable="isolation-enabled?"><value value="true"/></enumeratedValueSet>
+    <enumeratedValueSet variable="environmental-transmission?"><value value="false"/></enumeratedValueSet>
+    <enumeratedValueSet variable="isolation-compliance"><value value="0.5"/></enumeratedValueSet>
+    <enumeratedValueSet variable="cleaning-frequency"><value value="1"/></enumeratedValueSet>
+    <enumeratedValueSet variable="post-symptom-exclusion"><value value="2"/></enumeratedValueSet>
+  </experiment>
+</experiments>

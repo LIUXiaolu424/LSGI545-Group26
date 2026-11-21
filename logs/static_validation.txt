@@ -1,0 +1,6 @@
+STATIC VALIDATION: PASS
+- procedure/end balance: 29
+- required tick order present
+- smoke_test_18x2: 18 conditions x 2 repetitions = 36 runs
+- main_interventions_18x50: 18 conditions x 50 repetitions = 900 runs
+- NOTE: static validation is not NetLogo compilation or execution

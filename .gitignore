@@ -1,0 +1,26 @@
+.runtime/
+.venv/
+.pip-cache/
+**/__pycache__/
+*.pyc
+
+# Unrelated individual-assignment material
+smart_application_assignment/
+
+# Generated report/presentation build and QA files
+group_report_presentation/.build/
+group_report_presentation/.codex-finalizer/
+group_report_presentation/node_modules/
+group_report_presentation/qa/
+
+# Local report/presentation authoring sources and intermediate assets
+group_report_presentation/assets/
+group_report_presentation/scripts/
+
+# Duplicate submission archives and run logs
+deliverables/*.zip
+logs/*.log
+
+# Superseded debugging outputs retained locally for diagnosis
+logs/smoke_degenerate_no_secondary_transmission.csv
+logs/smoke_failed_parameter_reset.csv

@@ -1,0 +1,8 @@
+DYNAMIC VALIDATION RECEIPT (actual NetLogo 6.4.0 output)
+- Test 1 zero initial infection: PASS - runs=5, cumulative=['0']
+- Test 2 zero transmission: PASS - runs=10, cumulative=['2']
+- Test 3 environment disabled: PASS - runs=10, environmental infections=['0']
+- Test 4 population conservation: PASS - checked 25 validation runs
+- Test 7 stochastic variation: PASS - 14 distinct cumulative-infection outcomes across 36 runs
+- Test 5 isolation direction: PASS - mean attack rate: compliance 0=0.3773, compliance 1=0.0140
+- Test 6 cleaning direction: PASS - mean final contamination: cleaning 0=0.00121909, cleaning 2=0.000307711
