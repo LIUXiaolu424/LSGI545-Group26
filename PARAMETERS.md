@@ -9,9 +9,8 @@ The categories below distinguish empirical support from simplifying assumptions 
 | Incubation period | 2–8 ticks | 12–48 hours |
 | Symptomatic period | 4–12 ticks | 1–3 days |
 | Post-symptom exclusion | 0 or 2 days | The intervention comparison includes a 48-hour exclusion condition |
-| Asymptomatic proportion | baseline 0.22 | Approximate baseline for the model, not a certain universal value; sensitivity values are 0.10, 0.22, and 0.30 |
 
-These ranges require appropriate citations in the submitted report. This file classifies their role but is not a literature review.
+The timing ranges are typical clinical ranges, not deterministic guarantees. CDC's 48-hour stay-home advice does not establish that shedding ends then; transmission can continue for two weeks or more after recovery. The isolation-room arrangement is a separate model assumption.
 
 ## B. Structural model assumptions
 
@@ -27,12 +26,17 @@ These ranges require appropriate citations in the submitted report. This file cl
 | Post-symptomatic duration | 8 ticks |
 | Movement | four simple daily phases, no timetable or contact network |
 | Cleaning scope | bathroom, kitchen, and common room; bedrooms excluded |
-| Infection-route attribution | route of first successful infection event |
+| Infection-route attribution | first successful event; direct checked before environmental |
+
+Wang et al. (2023), DOI [10.1186/s12879-023-08519-y](https://doi.org/10.1186/s12879-023-08519-y), report PCR positivity among asymptomatic tested individuals, not the fraction of infected people who remain asymptomatic. Their 21.8% estimate does not directly justify the model's 0.22 branching probability. Proposed sensitivity values (0.10, 0.22, 0.30) have not been run here.
+
+The two-day exclusion policy covers the full eight-tick P state; the model does not test a longer shedding tail after release.
 
 ## C. Calibration and sensitivity parameters
 
 | Parameter | Baseline | Code location |
 |---|---:|---|
+| Asymptomatic branching probability | 0.22 | Interface / BehaviorSpace; assumed, not fitted |
 | Direct transmission probability per co-location opportunity | 0.05 | Interface / BehaviorSpace |
 | Environmental transmission multiplier | 0.03 | Interface / BehaviorSpace |
 | Relative infectiousness: I-sym | 1.0 | `become-symptomatic` |

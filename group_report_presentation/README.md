@@ -14,4 +14,8 @@ The report and presentation use the actual NetLogo 6.4.0 BehaviorSpace outputs s
 
 ## Before submission
 
-Replace the group-member names, student IDs, submission date and any course-specific declaration wording. Do not replace the saved result figures with illustrative or synthetic values.
+Fill in group-member names, student IDs and the actual submission date. Review the report and all 33 presentation slides, and align the truthful AI-use disclosure with the course policy. The files disclose drafting, code-generation/debugging, checking, editing and layout assistance; this is distinct from GitHub contributor attribution.
+
+The 0.22 asymptomatic branching probability is a model assumption, not the cited paper's 21.8% positivity among asymptomatic tested people. The updated references and numerical caveats should remain in the submitted version. Preserve the saved result figures and raw data; do not substitute illustrative values.
+
+The submitted `.nlogo` is self-contained. Report/PPT changes in this revision do not alter the model or rerun simulations.

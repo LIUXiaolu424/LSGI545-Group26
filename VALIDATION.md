@@ -28,7 +28,9 @@ This document separates static inspection from actual NetLogo execution. All PAS
 
 - Smoke test: `results/smoke_test_18x2.csv`, 36 runs, 18 conditions x 2 repetitions, PASS.
 - Main experiment: `results/main_interventions_18x50.csv`, 900 runs, 18 conditions x 50 repetitions, PASS.
-- Baseline time series: `results/baseline_timeseries_50.csv`, 50 stochastic repetitions across 120 ticks, PASS.
+- Baseline time series: `results/baseline_timeseries_50.csv`, 50 stochastic repetitions, 6,000 rows (120 observations per run at exported steps 0–119), PASS.
+- All saved final-output CSV rows have BehaviorSpace `[step] = 119`. This is the exported observation index; the configured stopping horizon is 120 ticks. Do not describe these files as a verified tick-120 observation.
+- Random seeds were not explicitly logged. Saved data support statistical readback, not exact seed-by-seed replay.
 - Machine-readable validation summary: `logs/dynamic_validation.txt`.
 
 ## Static checks
@@ -39,4 +41,6 @@ Passing static checks is not a NetLogo compiler result.
 
 ## Directional-test caution
 
-Tests 5 and 6 assess averages over repeated stochastic runs. A single paired run is not required to follow the expected direction.
+Tests 5 and 6 assess averages from the completed main experiment and are post-main checks, not pre-main launch gates. Tests 1–4 use dedicated boundary data; test 7 uses smoke data. The historical receipt's 14 pooled outcomes do not alone prove within-condition variation; direct readback finds differing paired outcomes in 12 of the 18 smoke conditions.
+
+Static checks and readback of saved CSVs are not a new NetLogo compilation or simulation. The current `validate_results.py` exit code considers only the first five listed checks, so inspect every reported result rather than relying on exit status alone. A single stochastic repetition need not follow the aggregate direction.
