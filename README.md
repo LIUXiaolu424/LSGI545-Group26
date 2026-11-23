@@ -37,7 +37,7 @@ The saved deliverable has been compiled and run with NetLogo 6.4.0 headless. It 
 5. Export its table to `results/smoke_test_18x2.csv`.
 6. Only after the smoke and validation checks pass, run `main_interventions_18x50` and export to `results/main_interventions_18x50.csv`.
 
-The model uses `__includes ["NorovirusDormABM.nls"]`, so keep the `.nlogo` and `.nls` files together.
+The model procedures are embedded directly inside `NorovirusDormABM.nlogo` so it can be opened or submitted as a standalone single file; `NorovirusDormABM.nls` is kept in sync as an easily readable plain-text reference.
 
 ## Headless execution on Windows
 

@@ -36,46 +36,48 @@ def main() -> int:
 
     nls = (ROOT / "NorovirusDormABM.nls").read_text(encoding="utf-8")
     nlogo = (ROOT / "NorovirusDormABM.nlogo").read_text(encoding="utf-8")
+    nlogo_code = nlogo.split("@#$#@#$#@")[0]
 
-    procedures = re.findall(r"(?m)^to(?:-report)?\s+[\w?-]+", nls)
-    endings = re.findall(r"(?m)^end\s*$", nls)
-    if len(procedures) != len(endings):
-        errors.append(f"procedure/end mismatch: {len(procedures)} procedures, {len(endings)} ends")
-    else:
-        notes.append(f"procedure/end balance: {len(procedures)}")
+    for source_name, source_text in [("NorovirusDormABM.nls", nls), ("NorovirusDormABM.nlogo", nlogo_code)]:
+        procedures = re.findall(r"(?m)^to(?:-report)?\s+[\w?-]+", source_text)
+        endings = re.findall(r"(?m)^end\s*$", source_text)
+        if len(procedures) != len(endings):
+            errors.append(f"{source_name} procedure/end mismatch: {len(procedures)} procedures, {len(endings)} ends")
+        elif source_name == "NorovirusDormABM.nlogo":
+            notes.append(f"procedure/end balance: {len(procedures)}")
 
-    required_procedures = {
-        "setup", "setup-spaces", "setup-students", "seed-infections", "go",
-        "enforce-isolation", "move-students", "contaminate-environment",
-        "direct-transmission-step", "environmental-transmission-step",
-        "infect-student", "progress-disease", "become-symptomatic",
-        "become-asymptomatic", "update-isolation-status", "decay-contamination",
-        "perform-cleaning", "update-statistics",
-    }
-    found = {p.split()[1] for p in procedures}
-    missing = sorted(required_procedures - found)
-    if missing:
-        errors.append("missing procedures: " + ", ".join(missing))
+        required_procedures = {
+            "setup", "setup-spaces", "setup-students", "seed-infections", "go",
+            "enforce-isolation", "move-students", "contaminate-environment",
+            "direct-transmission-step", "environmental-transmission-step",
+            "infect-student", "progress-disease", "become-symptomatic",
+            "become-asymptomatic", "update-isolation-status", "decay-contamination",
+            "perform-cleaning", "update-statistics",
+        }
+        found = {p.split()[1] for p in procedures}
+        missing = sorted(required_procedures - found)
+        if missing:
+            errors.append(f"{source_name} missing procedures: " + ", ".join(missing))
 
-    tick_order = [
-        "enforce-isolation", "move-students", "contaminate-environment",
-        "direct-transmission-step", "environmental-transmission-step",
-        "progress-disease", "update-isolation-status", "decay-contamination",
-        "perform-cleaning", "update-statistics", "tick",
-    ]
-    go_match = re.search(r"(?ms)^to go\s+(.*?)^end\s*$", nls)
-    if not go_match:
-        errors.append("go procedure not found")
-    else:
-        body = go_match.group(1)
-        positions = []
-        for item in tick_order:
-            match = re.search(rf"(?m)^\s*{re.escape(item)}\s*$", body)
-            positions.append(match.start() if match else -1)
-        if any(pos < 0 for pos in positions) or positions != sorted(positions):
-            errors.append("required tick order is missing or out of order")
+        tick_order = [
+            "enforce-isolation", "move-students", "contaminate-environment",
+            "direct-transmission-step", "environmental-transmission-step",
+            "progress-disease", "update-isolation-status", "decay-contamination",
+            "perform-cleaning", "update-statistics", "tick",
+        ]
+        go_match = re.search(r"(?ms)^to go\s+(.*?)^end\s*$", source_text)
+        if not go_match:
+            errors.append(f"{source_name}: go procedure not found")
         else:
-            notes.append("required tick order present")
+            body = go_match.group(1)
+            positions = []
+            for item in tick_order:
+                match = re.search(rf"(?m)^\s*{re.escape(item)}\s*$", body)
+                positions.append(match.start() if match else -1)
+            if any(pos < 0 for pos in positions) or positions != sorted(positions):
+                errors.append(f"{source_name}: required tick order is missing or out of order")
+            elif source_name == "NorovirusDormABM.nlogo":
+                notes.append("required tick order present")
 
     for widget in ["GRAPHICS-WINDOW", "BUTTON", "SLIDER", "SWITCH", "MONITOR", "PLOT"]:
         if widget not in nlogo:
